@@ -7,17 +7,47 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat|Pacifico" rel="stylesheet">
 </head>
 
-<body>
-  <h1>Help me choose</h1>
+<body class="Background">
+  <div class="Header">
+  <h1>Help me choose cat!</h1>
+  </div>
 <div class="inputSection">
   <div class="Inputs">
-    <input placeholder="Food"></input>
+    <input placeholder="Cat"></input>
   </div>
-  <button class="addOption">Add food</button>
+  <button class="addOption">Add cat</button>
 </div>
-<button class="ActionButton">Go!</button>
+<div class="ResultSection"></div>
+<button class="submit">Go!</button>
 <div>
   <img src="https://media1.giphy.com/media/i3Ks1lAev1wk/giphy.gif?cid=3640f6095c7d89856c744648492205ec" alt="TACOCAT" height="200" width="200">
 </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $(function(){
+    $('.ResultSection').hide()
+
+    var add_option = function(){
+      $('.Inputs') .append('<input></input>')
+    }
+    $('.addOption').click(add_option)
+
+    var options=[]
+    var submit = function () {
+      $('.inputSection').hide()
+      $('.ResultSection').css ('display', 'flex')
+      $('input').each(function() {
+        options.push($(this).val())
+      })
+      var winner = options[Math.floor(Math.random()* options.length)]
+      console.log (winner)
+      $('.ResultSection').text(winner)
+    }
+$('.submit').click(submit)
+
+  })
+</script>
+
 </body>
 </html>
